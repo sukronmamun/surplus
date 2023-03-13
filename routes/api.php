@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,9 @@ Route::get('category/{id}',[ CategoryController::class, 'detail']);
 Route::post('category',[ CategoryController::class, 'store']);
 Route::put('category/{id}',[ CategoryController::class, 'update']);
 Route::delete('category/delete/{id}',[ CategoryController::class, 'destroy']);
+
+Route::post('image',[ ImageController::class, 'upload']);
+Route::get('image/{path}',[ ImageController::class, 'getimage'])->where('path', '.*');;
 
 
 
