@@ -97,7 +97,48 @@ class ProductServiceImplement extends Service implements ProductService{
 
     return $ress;
   }
-   
 
+  public function update($source, $id)
+  {
+
+    $dataProduct = [
+      "name" => $source->name,
+      "Description" => $source->Description,
+      "enable" => $source->enable,
+    ];
+
+    try {
+      $this->mainRepository->update($id, $dataProduct);
+  
+      // delete Relation Table
+      $this->mainRepository->deleteProductCategory($id);
+      $this->mainRepository->deleteProductImage($id);
+  
+      // Recreated Images
+      foreach ($source->images as $image) {
+        $this->mainRepository->createProductImage([
+          'product_id' => $id,
+          'image_id' => $image['id'],
+        ]);
+      }
+  
+      // Recreated Category
+      foreach ($source->categories as $category) {
+        $this->mainRepository->createProductCategory([
+          'product_id' =>  $id,
+          'category_id' => $category['id'],
+        ]);
+      }
+  
+      $dataProduct["id"] = $id;
+      return $dataProduct; 
+    } catch (\Exception $e) {
+      Log::debug([
+        $e->getMessage(),
+        $e->getLine(),
+      ]);
+        return [];
+    }
+  }
 
 }

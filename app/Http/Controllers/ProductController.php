@@ -49,9 +49,14 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update(Request $request, string $id)
+    public function update(ProductRequest $request, Int $id)
     {
-        
+        $result = $this->productService->update($request, $id);
+        return response()->json([
+            'status' => true,
+            'code' => 200,
+            'data' => $result
+        ]);
     }
 
     public function destroy(string $id)

@@ -31,6 +31,15 @@ class ProductRepositoryImplement extends Eloquent implements ProductRepository{
         return CategoryProduct::create($categories);
     }
 
+    public function deleteProductCategory($id){
+        return CategoryProduct::where("product_id",$id)->delete();
+    }
+
+    
+    public function deleteProductImage($id){
+        return ImageProduct::where("product_id",$id)->delete();
+    }
+
     
 
     
