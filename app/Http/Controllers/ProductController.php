@@ -59,8 +59,13 @@ class ProductController extends Controller
         ]);
     }
 
-    public function destroy(string $id)
+    public function destroy(Int $id)
     {
-        //
+        $result = $this->productService->delete($id);
+        return response()->json([
+            'status' => true,
+            'code' => 200,
+            'data' => $result
+        ]);
     }
 }

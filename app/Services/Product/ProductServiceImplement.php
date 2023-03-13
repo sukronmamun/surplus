@@ -141,4 +141,25 @@ class ProductServiceImplement extends Service implements ProductService{
     }
   }
 
+  public function delete($id)
+  {
+
+    
+    try {
+      // delete Product
+      $this->mainRepository->delete($id);
+       
+      // delete Relation Table
+      $this->mainRepository->deleteProductCategory($id);
+      $this->mainRepository->deleteProductImage($id);
+      
+    } catch (\Exception $e) {
+      Log::debug([
+        $e->getMessage(),
+        $e->getLine(),
+      ]);
+        return [];
+    }
+  }
+
 }
