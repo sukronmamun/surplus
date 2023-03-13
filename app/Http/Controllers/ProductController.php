@@ -24,9 +24,9 @@ class ProductController extends Controller
         //
     }
 
-    public function show(string $id)
+    public function show(Int $id)
     {
-        //
+        return $this->productService->detail($id);
     }
 
     public function update(Request $request, string $id)

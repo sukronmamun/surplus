@@ -23,23 +23,45 @@ class ProductServiceImplement extends Service implements ProductService{
 
       try {
       
-        $sources = $this->mainRepository->all();
-          $ress = [];
-          foreach ($sources as $source) {
-              $temp = $source;
-              $temp->categories = $source->categories;
-              $temp->images = $source->images;
-              array_push($ress, $temp);
-          }
-
-          return $ress;
+          $sources = $this->mainRepository->all();
+          return $this->detailing($sources);
           
       } catch (\Exception $e) {
           Log::debug($e->getMessage());
           return [];
       }
 
-      
+
   }
-    // Define your custom methods :)
+
+  public function detail(Int $id){
+
+    try {
+    
+        $sources = [$this->mainRepository->find($id)];
+        return $this->detailing($sources);
+        
+    } catch (\Exception $e) {
+        Log::debug($e->getMessage());
+        return [];
+    }
+
+    
+  }
+
+  public function detailing($sources)
+  {
+    $ress = [];
+        foreach ($sources as $source) {
+            $temp = $source;
+            $temp->categories = $source->categories;
+            $temp->images = $source->images;
+            array_push($ress, $temp);
+        }
+
+    return $ress;
+  }
+   
+
+
 }

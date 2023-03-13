@@ -8,4 +8,8 @@ interface ProductService extends BaseService{
 
     public function listAllData();
     
+    public function detail(Int $id);
+
+    public function detailing($sources);
+    
 }
