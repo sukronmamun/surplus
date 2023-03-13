@@ -24,6 +24,7 @@ Route::delete('product/delete/{id}',[ ProductController::class, 'delete']);
 
 Route::get('category',[ CategoryController::class, 'list']);
 Route::get('category/{id}',[ CategoryController::class, 'detail']);
+Route::post('category',[ CategoryController::class, 'store']);
 
 
 

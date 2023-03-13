@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRequest;
 use App\Services\Category\CategoryService;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    private $category;
+    private $categoryService;
     
-    public function __construct(CategoryService $category) {
-        $this->category = $category;
+    public function __construct(CategoryService $categoryService) {
+        $this->categoryService = $categoryService;
     }
 
 
     public function list()
     {
-        $result =  $this->category->all();
+        $result =  $this->categoryService->all();
         return response()->json([
             'status' => true,
             'code' => 200,
@@ -26,7 +27,17 @@ class CategoryController extends Controller
 
     public function detail(Int $id)
     {
-        $result =  $this->category->productByCategory($id);
+        $result =  $this->categoryService->productByCategory($id);
+        return response()->json([
+            'status' => true,
+            'code' => 200,
+            'data' => $result
+        ]);
+    } 
+
+    public function store(CategoryRequest $request)
+    {
+        $result = $this->categoryService->store($request);
         return response()->json([
             'status' => true,
             'code' => 200,

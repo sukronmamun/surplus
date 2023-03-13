@@ -4,6 +4,7 @@ namespace App\Services\Category;
 
 use LaravelEasyRepository\Service;
 use App\Repositories\Category\CategoryRepository;
+use Illuminate\Support\Facades\Log;
 
 class CategoryServiceImplement extends Service implements CategoryService{
 
@@ -37,4 +38,31 @@ class CategoryServiceImplement extends Service implements CategoryService{
   
       return $ress;
     }
+
+    public function store($source)
+    {
+      
+      try {
+        $response = $this->mainRepository->create( [
+          'name' => $source->name,
+          'enable' => $source->enable
+        ]);
+
+        return  [
+          'id' => $response->name,
+          'name' => $source->name,
+          'enable' => $source->enable
+        ]; 
+
+      } catch (\Exception $e) {
+        Log::debug([
+          $e->getMessage(),
+          $e->getLine(),
+        ]);
+          return [];
+      }
+
+    }
+
+    
 }
