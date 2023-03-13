@@ -2,7 +2,12 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Category;
+use App\Models\CategoryProduct;
+use App\Models\Image;
+use App\Models\ImageProduct;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +17,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        Product::factory(5)->create();
+        Category::factory(5)->create();
+        Image::factory(5)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        Product::all()->each(function($product) {
+            for ($i=1; $i < rand(2, 5); $i++) { 
+                CategoryProduct::factory(1)->create([
+                    'product_id' => $product->id,
+                    'category_id' => $i,
+                ]);    
+            }
+
+            for ($i=1; $i < rand(2, 5); $i++) { 
+                ImageProduct::factory(1)->create([
+                    'product_id' => $product->id,
+                    'image_id' => $i,
+                ]);    
+            }
+        });
     }
 }
