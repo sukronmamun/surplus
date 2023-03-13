@@ -1,21 +1,23 @@
+
 # LARAVEL CRUD API
 
 Pretest backend, 
 CRUD Rest Api menggunakan laravel dan mysql 
 
+
+
+
 ## Requirements
 - PHP >= 8.1 
 - Composer 
-
-## Authors
-
-- [@sukronmamun](https://github.com/sukronmamun)
 
 ## Basic Features
 - Product 
 - Category
 - Image
 
+## Authors
+- [@sukronmamun](https://github.com/sukronmamun)
 
 ## Installation
 
@@ -39,7 +41,16 @@ clone project
 
 ```
     
-## Demo
+
+## Demo Endpoint
 
 https://surplus.jamboo.id 
 - posman file link 
+
+
+## API DOC
+https://surplus.jamboo.id/request-docs
+
+
+
+
