@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class ImageProduct extends Model
 {
     use HasFactory;
+    protected $table = 'image_product';
+    public $timestamps = false;
+
+    public $fillable = [
+        "id",
+        "name",
+        "file",
+        "enable"
+    ];
+
 }

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_image', function (Blueprint $table) {
+        Schema::create('image_product', function (Blueprint $table) {
             $table->integer('product_id')->constrained('product');
             $table->integer('image_id')->constrained('image');
             $table->primary(['image_id', 'product_id']);
@@ -23,7 +23,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_image');
+        Schema::dropIfExists('image_product');
 
     }
 };
