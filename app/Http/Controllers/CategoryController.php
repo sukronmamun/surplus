@@ -54,4 +54,14 @@ class CategoryController extends Controller
             'data' => $result
         ]);
     } 
+
+    public function destroy(Int $id)
+    {
+        $result = $this->categoryService->delete($id);
+        return response()->json([
+            'status' => true,
+            'code' => 200,
+            'data' => $result
+        ]);
+    } 
 }

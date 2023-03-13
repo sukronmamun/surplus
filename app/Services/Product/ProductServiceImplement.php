@@ -23,6 +23,12 @@ class ProductServiceImplement extends Service implements ProductService{
 
       try {
           $sources = $this->mainRepository->all();
+
+
+        if(empty($sources)){
+          return [];
+        }
+        
           return $this->detailing($sources);
           
       } catch (\Exception $e) {
@@ -37,8 +43,13 @@ class ProductServiceImplement extends Service implements ProductService{
 
     try {
     
-        $sources = [$this->mainRepository->find($id)];
-        return $this->detailing($sources);
+        $sources = $this->mainRepository->find($id);
+
+        if(empty($sources)){
+          return [];
+        }
+
+        return $this->detailing([$sources]);
         
     } catch (\Exception $e) {
         Log::debug($e->getMessage());

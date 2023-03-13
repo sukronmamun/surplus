@@ -4,6 +4,7 @@ namespace App\Repositories\Category;
 
 use LaravelEasyRepository\Implementations\Eloquent;
 use App\Models\Category;
+use App\Models\CategoryProduct;
 
 class CategoryRepositoryImplement extends Eloquent implements CategoryRepository{
 
@@ -19,5 +20,8 @@ class CategoryRepositoryImplement extends Eloquent implements CategoryRepository
         $this->model = $model;
     }
 
-    // Write something awesome :)
+    public function deleteRelationProduct(Int $id)
+    {
+            return CategoryProduct::where("category_id",$id)->delete();
+    }
 }

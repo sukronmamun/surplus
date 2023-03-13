@@ -22,9 +22,13 @@ class CategoryServiceImplement extends Service implements CategoryService{
     public function productByCategory(Int $id)
     {
 
-      $sources = [$this->mainRepository->find($id)];
+      $sources = $this->mainRepository->find($id);
       
-      return $this->detailing($sources);
+      if(empty($sources)){
+        return [];
+      }
+      
+      return $this->detailing([$sources]);
     }
 
     public function detailing($sources)
@@ -89,6 +93,28 @@ class CategoryServiceImplement extends Service implements CategoryService{
       }
 
     }
+
+
+    public function delete($id)
+  {
+
+    
+    try {
+      // delete Product
+      $this->mainRepository->delete($id);
+       
+      // delete Relation Table
+      $this->mainRepository->deleteRelationProduct($id);
+      
+      
+    } catch (\Exception $e) {
+      Log::debug([
+        $e->getMessage(),
+        $e->getLine(),
+      ]);
+        return [];
+    }
+  }
 
 
 }
