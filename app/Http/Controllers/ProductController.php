@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Services\Product\ProductService;
 use Illuminate\Http\Request;
+
+use function PHPUnit\Framework\isEmpty;
 
 class ProductController extends Controller
 {
@@ -16,22 +19,39 @@ class ProductController extends Controller
 
     public function list()
     {
-        return $this->productService->listAllData();
+        $result =  $this->productService->listAllData();
+        return response()->json([
+            'status' => true,
+            'code' => 200,
+            'data' => $result
+        ]);
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+       
+        $result = $this->productService->store($request);
+        return response()->json([
+            'status' => true,
+            'code' => 200,
+            'data' => $result
+        ]);
     }
 
     public function show(Int $id)
     {
-        return $this->productService->detail($id);
+        $result =  $this->productService->detail($id);
+
+        return response()->json([
+            'status' => true,
+            'code' => 200,
+            'data' => $result
+        ]);
     }
 
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
     public function destroy(string $id)

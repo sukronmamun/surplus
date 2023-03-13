@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Product;
 
+use App\Models\CategoryProduct;
+use App\Models\ImageProduct;
 use LaravelEasyRepository\Implementations\Eloquent;
 use App\Models\Product;
 
@@ -18,6 +20,18 @@ class ProductRepositoryImplement extends Eloquent implements ProductRepository{
     {
         $this->model = $model;
     }
+
+    public function createProductImage($images)
+    {
+        return ImageProduct::create($images);
+    }
+    
+    public function createProductCategory($categories)
+    {
+        return CategoryProduct::create($categories);
+    }
+
+    
 
     
     // Write something awesome :)

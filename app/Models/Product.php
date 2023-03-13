@@ -11,6 +11,11 @@ class Product extends Model
     protected $table = 'product';
     public $timestamps = false;
 
+    public $fillable = [
+        'name',
+        'Description',
+        'enable',
+    ];
 
     public function categories()
     {

@@ -12,10 +12,8 @@ class ImageProduct extends Model
     public $timestamps = false;
 
     public $fillable = [
-        "id",
-        "name",
-        "file",
-        "enable"
+        "image_id",
+        "product_id"
     ];
 
 }

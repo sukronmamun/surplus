@@ -6,5 +6,6 @@ use LaravelEasyRepository\Repository;
 
 interface ProductRepository extends Repository{
 
-    // Write something awesome :)
+    public function createProductImage($images);
+    public function createProductCategory($categories);
 }

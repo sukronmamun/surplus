@@ -11,6 +11,11 @@ class Image extends Model
     protected $table = 'image';
     public $timestamps = false;
 
+    public $fillable = [
+        'name',
+        'file',
+        'enable',
+    ];
 
     public function products()
     {

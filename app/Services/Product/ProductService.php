@@ -11,5 +11,6 @@ interface ProductService extends BaseService{
     public function detail(Int $id);
 
     public function detailing($sources);
+    public function store($source);
     
 }
