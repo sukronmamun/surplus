@@ -44,4 +44,14 @@ class CategoryController extends Controller
             'data' => $result
         ]);
     } 
+
+    public function update(CategoryRequest $request,Int $id)
+    {
+        $result = $this->categoryService->update($request, $id);
+        return response()->json([
+            'status' => true,
+            'code' => 200,
+            'data' => $result
+        ]);
+    } 
 }

@@ -49,7 +49,7 @@ class CategoryServiceImplement extends Service implements CategoryService{
         ]);
 
         return  [
-          'id' => $response->name,
+          'id' => $response->id,
           'name' => $source->name,
           'enable' => $source->enable
         ]; 
@@ -64,5 +64,31 @@ class CategoryServiceImplement extends Service implements CategoryService{
 
     }
 
-    
+
+    public function update($source, $id)
+    {
+      
+      try {
+        $this->mainRepository->update( $id, [
+          'name' => $source->name,
+          'enable' => $source->enable
+        ]);
+
+        return  [
+          'id' => $id,
+          'name' => $source->name,
+          'enable' => $source->enable
+        ]; 
+
+      } catch (\Exception $e) {
+        Log::debug([
+          $e->getMessage(),
+          $e->getLine(),
+        ]);
+          return [];
+      }
+
+    }
+
+
 }
